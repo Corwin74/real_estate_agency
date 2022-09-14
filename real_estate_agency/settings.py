@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'property.apps.PropertyConfig',
+
+    # Third-party apps
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -100,3 +103,7 @@ DATABASES = {
         os.getenv('DATABASE', 'sqlite:///db.sqlite3')
     ),
 }
+
+PHONENUMBER_DB_FORMAT = "INTERNATIONAL"
+PHONENUMBER_DEFAULT_FORMAT = "INTERNATIONAL"
+PHONENUMBER_DEFAULT_REGION = 'RU'
