@@ -64,8 +64,16 @@ class Flat(models.Model):
 
 
 class Complaint(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+                             User,
+                             on_delete=models.CASCADE,
+                             related_name='complaints',
+    )
+    flat = models.ForeignKey(
+                             Flat,
+                             on_delete=models.CASCADE,
+                             related_name='complaints',
+    )
     text = models.TextField(blank=True)
 
     class Meta:
