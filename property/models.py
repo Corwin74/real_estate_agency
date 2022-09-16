@@ -5,13 +5,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
-    #owner = models.CharField('ФИО владельца', max_length=200)
-    #owners_phonenumber = models.CharField('Номер владельца', max_length=20)
-    #owner_pure_phonenumber = PhoneNumberField(
-    #    verbose_name='Нормализованный номер владельца',
-    #    blank=True,
-    #    null=True,
-    #)
     created_at = models.DateTimeField(
         'Когда создано объявление',
         default=timezone.now,
@@ -65,19 +58,27 @@ class Flat(models.Model):
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
 
+    class Meta:
+        verbose_name = "Квартира"
+        verbose_name_plural = 'Квартиры'
+
 
 class Complaint(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
     text = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name = "Жалоба"
+        verbose_name_plural = 'Жалобы'
+
 
 class Owner(models.Model):
     owner = models.CharField('ФИО владельца', max_length=100, db_index=True)
     owners_phonenumber = models.CharField(
                                           'Номер владельца',
-                                           max_length=20,
-                                           db_index=True,
+                                          max_length=20,
+                                          db_index=True,
     )
     owner_pure_phonenumber = PhoneNumberField(
         verbose_name='Нормализованный номер владельца',
@@ -94,3 +95,7 @@ class Owner(models.Model):
 
     def __str__(self):
         return self.owner
+
+    class Meta:
+        verbose_name = "Владелец"
+        verbose_name_plural = 'Владельцы'

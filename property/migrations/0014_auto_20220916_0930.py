@@ -8,9 +8,9 @@ def fill_owner_flat_link(apps, schema_editor):
     Owner = apps.get_model('property', 'Owner')
     for flat in Flat.objects.all().iterator():
         owner, _ = Owner.objects.get_or_create(
-                                owner=flat.owner,
-                                owners_phonenumber=flat.owners_phonenumber,
-                                owner_pure_phonenumber=flat.owner_pure_phonenumber,
+                        owner=flat.owner,
+                        owners_phonenumber=flat.owners_phonenumber,
+                        owner_pure_phonenumber=flat.owner_pure_phonenumber,
         )
         owner.owned_flats.add(flat)
         owner.save()
